@@ -1,47 +1,47 @@
 'use strict';
-
 // Load plugins
-const autoprefixer = require('autoprefixer');
-const browsersync = require('browser-sync').create();
-const cp = require('child_process');
-const del = require('del');
-const eslint = require('gulp-eslint');
-const gulp = require('gulp');
-const imagemin = require('gulp-imagemin');
-const newer = require('gulp-newer');
-const plumber = require('gulp-plumber');
-const postcss = require('gulp-postcss');
-const rename = require('gulp-rename');
-const sass = require('gulp-sass');
-const webpack = require('webpack');
-const webpackconfig = require('./webpackconfig.js');
-const webpackstream = require('webpack-stream');
+const gulp = require('gulp'),
+      autoprefixer = require('autoprefixer'),
+      browsersync = require('browser-sync').create(),
+      del = require('del'),
+      eslint = require('gulp-eslint'),
+      imagemin = require('gulp-imagemin'),
+      jade = require('gulp-jade'),
+      newer = require('gulp-newer'),
+      plumber = require('gulp-plumber'),
+      postcss = require('gulp-postcss'),
+      rename = require('gulp-rename'),
+      sass = require('gulp-sass'),
+      webpack = require('webpack'),
+      webpackconfig = require('./webpackconfig.js'),
+      webpackstream = require('webpack-stream');
 
 // BrowserSync
-function browserSync(done) {
+function serve(done) {
     browsersync.init({
-        server: { baseDir: './_site/' },
-        port: 3000
+        server: { baseDir: './' },
+        port: 3000,
+        injectChanges: true
     });
     done();
 }
 
 // BrowserSync Reload
-function browserSyncReload(done) {
+function reload(done) {
     browsersync.reload();
     done();
 }
 
 // Clean assets
 async function clean () {
-    return await del(['./app/src/']);
+    return await del(['./src/']);
 }
 
 // Optimize Images
 function images() {
     return gulp
         .src('./src/img/*')
-        .pipe(newer('./app/img'))
+        .pipe(newer('./src/img'))
         .pipe(imagemin([
             imagemin.gifsicle({ interlaced: true }),
             imagemin.jpegtran({ progressive: true }),
@@ -53,7 +53,18 @@ function images() {
                 }]
             })
         ]))
-        .pipe(gulp.dest('./app/src/img'));
+        .pipe(gulp.dest('./dist/img'));
+}
+
+// Compile jade files
+
+function compileJade() {
+    return gulp
+        .src('./src/templates/*.jade')
+        .pipe(jade({
+            pretty: true
+        }))
+        .pipe(gulp.dest('./'));
 }
 
 // CSS task
@@ -62,10 +73,10 @@ function css() {
         .src('./src/scss/**/*.scss')
         .pipe(plumber())
         .pipe(sass({ outputStyle: 'expanded' }))
-        .pipe(gulp.dest('./_site/assets/css/'))
+        .pipe(gulp.dest('./assets/css/'))
         .pipe(rename({ suffix: '.min' }))
         .pipe(postcss([autoprefixer()]))
-        .pipe(gulp.dest('./_site/assets/css/'))
+        .pipe(gulp.dest('./assets/css/'))
         .pipe(browsersync.stream());
 }
 
@@ -86,7 +97,7 @@ function scripts() {
         .pipe(plumber())
         .pipe(webpackstream(webpackconfig, webpack))
         // folder only, filename is specified in webpack config
-        .pipe(gulp.dest('./_site/assets/js/'))
+        .pipe(gulp.dest('./assets/js/'))
         .pipe(browsersync.stream());
 }
 
@@ -94,20 +105,19 @@ function scripts() {
 function watchFiles() {
     gulp.watch('./src/scss/**/*', css);
     gulp.watch('./src/js/**/*', gulp.series(scriptsLint, scripts));
+    gulp.watch('./src/templates/**/*.jade', gulp.parallel(compileJade, reload));
     gulp.watch([
-        './_includes/**/*',
-        './_layouts/**/*',
-        './_pages/**/*',
-        './_posts/**/*',
-        './_projects/**/*'
-    ], gulp.series(browserSyncReload));
-    gulp.watch('./src/img/**/*', images);
+        './src/templates/*.jade',
+        './src/scss/**/*.scss'
+    ], 
+    gulp.watch('./src/img/**/*', images));
 }
 
 // define complex tasks
 const js = gulp.series(scriptsLint, scripts);
 const build = gulp.series(clean, gulp.parallel(css, images, js));
-const watch = gulp.parallel(watchFiles, browserSync);
+const watch = gulp.parallel(watchFiles, reload);
+const dev = gulp.series(serve, watch)
 
 // export tasks
 module.exports = {
@@ -117,5 +127,7 @@ module.exports = {
     clean,
     build,
     watch,
+    compileJade,
+    dev,
     default: build
 };
