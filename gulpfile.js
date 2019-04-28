@@ -3,6 +3,7 @@
 const gulp = require('gulp'),
       autoprefixer = require('autoprefixer'),
       browsersync = require('browser-sync').create(),
+      babel = require('gulp-babel'),
       del = require('del'),
       eslint = require('gulp-eslint'),
       imagemin = require('gulp-imagemin'),
@@ -12,14 +13,12 @@ const gulp = require('gulp'),
       postcss = require('gulp-postcss'),
       rename = require('gulp-rename'),
       sass = require('gulp-sass'),
-      webpack = require('webpack'),
-      webpackconfig = require('./webpackconfig.js'),
-      webpackstream = require('webpack-stream');
+      cleanCSS = require('gulp-clean-css');
 
 // BrowserSync
 function serve(done) {
     browsersync.init({
-        server: { baseDir: './' },
+        server: { baseDir: './public' },
         port: 3000,
         injectChanges: true
     });
@@ -64,20 +63,19 @@ function compileJade() {
         .pipe(jade({
             pretty: true
         }))
-        .pipe(gulp.dest('./'));
+        .pipe(gulp.dest('./public'));
 }
 
 // CSS task
 function css() {
     return gulp
-        .src('./src/scss/**/*.scss')
+        .src('./src/scss/main.scss')
         .pipe(plumber())
         .pipe(sass({ outputStyle: 'expanded' }))
-        .pipe(gulp.dest('./assets/css/'))
         .pipe(rename({ suffix: '.min' }))
         .pipe(postcss([autoprefixer()]))
-        .pipe(gulp.dest('./assets/css/'))
-        .pipe(browsersync.stream());
+        .pipe(cleanCSS({ compatibility: 'ie8' }))
+        .pipe(gulp.dest('./public/dist/css/'))
 }
 
 // Lint scripts
@@ -93,31 +91,28 @@ function scriptsLint() {
 // Transpile, concatenate and minify scripts
 function scripts() {
     return gulp
-        .src(['./src/js/**/*'])
+        .src('./src/scripts/main.js')
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
         .pipe(plumber())
-        .pipe(webpackstream(webpackconfig, webpack))
         // folder only, filename is specified in webpack config
-        .pipe(gulp.dest('./assets/js/'))
-        .pipe(browsersync.stream());
+        .pipe(gulp.dest('./public/dist/js/'))
 }
 
 // Watch files
 function watchFiles() {
-    gulp.watch('./src/scss/**/*', css);
-    gulp.watch('./src/js/**/*', gulp.series(scriptsLint, scripts));
+    gulp.watch('./src/scripts/**/*.js', gulp.parallel(scripts, reload));
+    gulp.watch('./src/scss/**/*.scss', gulp.parallel(css, reload));
     gulp.watch('./src/templates/**/*.jade', gulp.parallel(compileJade, reload));
-    gulp.watch([
-        './src/templates/*.jade',
-        './src/scss/**/*.scss'
-    ], 
-    gulp.watch('./src/img/**/*', images));
+    gulp.watch('./src/img/**/*', images);
 }
 
 // define complex tasks
 const js = gulp.series(scriptsLint, scripts);
 const build = gulp.series(clean, gulp.parallel(css, images, js));
 const watch = gulp.parallel(watchFiles, reload);
-const dev = gulp.series(serve, watch)
+const dev = gulp.series(serve, watch, scripts)
 
 // export tasks
 module.exports = {
@@ -128,6 +123,7 @@ module.exports = {
     build,
     watch,
     compileJade,
+    scripts,
     dev,
     default: build
 };
