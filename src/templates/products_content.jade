@@ -1,0 +1,23 @@
+.products
+    .products__container
+        - for (var i = 0; i < 10; i++)
+            .product
+                .product__image
+                .product__info
+                    h1 Lorem Ipsum
+                    p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi tenetur quia magnam quas, ad aliquid molestias? Eligendi, repellendus delectus ratione
+                    
+                    .product__button__container
+                        .product__info-button
+                            a(href="#") Bestellen
+
+                        .product__info-button
+                            a(href="#") Meer informatie
+
+    .navigation
+        .navigation__container
+            a(href="#") 
+                span <i class="fas fa-arrow-left"></i> Vorige Pagina
+
+            a(href="#") 
+                span Volgende Pagina <i class="fas fa-arrow-right"></i> 

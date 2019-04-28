@@ -1,0 +1,114 @@
+footer {
+    position: relative;
+    height: 20vh;
+    background-color: $primary;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 14px;
+    align-items: center;
+
+    a,
+    p {
+        color: #ffffff;
+    }
+
+    .footer__logo {
+        margin-bottom: 3.8em;
+    }
+
+    // Links
+    .footer__links {
+        display: flex;
+        flex-direction: column;
+        
+        a {
+            margin-bottom: .5em;
+            transition: color .4s ease;
+
+            &:hover {
+                color: #B9B9B9;
+            }
+        }
+    }
+
+    // Social Media
+    .footer__social_media {
+        display: flex;
+        flex-direction: column;
+
+        a {
+            margin-bottom: .5em;
+            transition: color .4s ease;
+
+            &:hover {
+
+                color: #B9B9B9;
+
+                .fab {
+                    color: #9A6D27; 
+                }
+            }
+            
+            .fab {
+                margin-right: .8em;
+                color: #B68840;
+                transition: color .4s ease;
+            }
+            
+        }
+    }
+
+    .footer__newsletter {
+        display: flex;
+        flex-direction: column;
+
+        p {
+            margin-bottom: 1em;
+            font-weight: bold;
+            font-size: 1em;
+            letter-spacing: 1.2px;
+        }
+        
+        .footer__newsletter_subscribe {
+            
+            input {
+                padding: .8em 4em .8em 1em;
+                border-radius: .5em;
+                border: none;
+                background-color: transparent;
+                border: 2px solid #CA9A4E;
+                color: #ffffff;
+            }
+
+            button {
+                margin-left: -4em;
+                padding: .8em 1.2em;
+                border: none;
+                border-top-right-radius: .6em;
+                border-bottom-right-radius: .6em;
+                background-color: #CA9A4E;
+                color: #ffffff;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .footer__contact {
+        display: flex;
+        flex-direction: column;
+        
+        p {
+
+            a {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .footer__copyright {
+        position: absolute;
+        left: 9.7em;
+        bottom: 3.75em;
+        font-size: 12px;
+    }
+}
