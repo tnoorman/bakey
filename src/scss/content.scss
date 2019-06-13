@@ -3,7 +3,7 @@
     height: 92vh;
     background-color: rgba(0,0,0, 0.5);
     
-    .landing__bg {
+    &_bg {
         background: url('https://images.unsplash.com/photo-1504128668912-f893e6606db6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&w=1920&q=80') no-repeat;
         background-size: cover;
         background-position: 0px -4em;
@@ -13,9 +13,9 @@
         bottom: 0;
         right: 0;
         z-index: -1;
-    }
+    } // Landing Background
     
-    .landing__content {
+    &__content {
         height: 100%;
         width: 80%;
         margin: 0 auto;
@@ -23,7 +23,7 @@
         flex-direction: column;
         justify-content: center;
         
-        .landing__link-products {
+        .content__products_link {
             position: absolute;
             right: 4em;
             transition: transform .5s ease-out;
@@ -32,7 +32,7 @@
                 transform: translateX(2em);
             }
             
-            a {
+            .link {
                 text-decoration: none;
                 color: #ffffff;
                 font-size: 1.5em;
@@ -42,18 +42,17 @@
                 .fa-arrow-right {
                     margin-left: .5em;
                 }
-            }
-        }
+            } // Product Link
+        } // Link Products
         
-        .special__offer {
-            width: 80%;
-            height: 45%;
-            background-color: #c3c3c3;
+        .special_offer {
+            width: 75%;
+            height: 40%;
             display: flex;
             flex-direction: row;
             order: 1;
             
-            .special__offer-image {
+            &-image {
                 background: url('https://images.unsplash.com/photo-1536534028025-68598ea8af44?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&w=600&q=80') no-repeat;
                 background-size: cover;
                 background-position: 0px -15em;
@@ -63,64 +62,59 @@
                 align-items: flex-end;
                 justify-content: flex-end;
 
-                a {
+                &__link {
                     color: $white;
                     font-weight: bold;
                     position: relative;
                     right: 2.25em;
                     bottom: 1em;
-                }
+                } // Special Offer Link
 
-            }
+            } // Special Offer Image
 
             &:nth-of-type(even) {
                 
-                .special__offer-image {
+                &-image {
                     justify-content: flex-start;
 
-                    a {
+                    &__link {
                         left: 2.25em;        
                     }
                 }
             }
             
-            .special__offer-content {
+            &-content {
                 width: 50%;
                 height: 100%;
-                background-color: #B68840;
+                background-color: #5c4625;
                 color: #ffffff;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-evenly;
                 align-items: center;
                 
-                h1 {
+                &__title {
                     font-size: 2.2em;
                     position: relative;
-                    left: calc(-50% + (-1.55em + 6em));
-                }
+                    left: calc(-50% + (-1.35em + 6em));
+                } // Content Title
                 
-                p {
+                &__paragraph {
                     width: 80%;
                     position: relative;
                     bottom: 1em;
-                }
-
-                a {
-                    color: $white;
-                    font-weight: bold;
-                }
-            }
-        }
+                } // Content Paragraph
+            } // Special Offer Content
+        }  // Special Offer
         
-        .special__offer:nth-child(2) {
+        .special_offer:nth-child(2) {
             flex-direction: row-reverse;
             margin-top: 1.25em;
-        }
-    }
-}
+        }  // Reverse Special Offer
+    }  // Landing Content
+}  // Landing
 
-section {
+.container {
     height: 105vh;
     width: 100%;
     display: flex;
@@ -129,108 +123,110 @@ section {
     justify-content: space-evenly;
 
     
-    .about__us,
+    .about_us,
     .location {
-        width: 80%;
+        width: 65%;
+        height: 45vh;
         box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.12);
+    }  // About Us & Location
         
-        .about__us-container,
-        .location__container {
-            position: relative;
-            display: flex;
-            flex-direction: row;
-            height: 45vh;
-            width: 100%; 
+    .about_us__container,
+    .location__container {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        width: 100%;
+    }  // About Us & Location Container
             
-            .about__us-image,
-            .location__map { 
-                width: 50%;
-                height: 100%; 
-                background: url('https://images.pexels.com/photos/1079020/pexels-photo-1079020.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=800') no-repeat;
-                background-size: cover;
-                background-position: 0 -10vh;
-            }
+    .about_us__container {
+        .container__image { 
+            width: 50%;
+            background: url('https://images.pexels.com/photos/1079020/pexels-photo-1079020.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=800') no-repeat;
+            background-size: cover;
+        }  // Container Image
+    }  // About Us Container
             
-            .location__map {
-                background: url('https://images.unsplash.com/photo-1548345680-f5475ea5df84?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60') no-repeat;
-                background-size: cover;
-            }
+    .container__map {
+        width: 50%;
+        background: url('https://images.unsplash.com/photo-1548345680-f5475ea5df84?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60') no-repeat;
+        background-size: cover;
+    } // Location Map
             
-            .about__us-content,
-            .location__content {
-                width: 50%;
-                height: 100%;
-                padding-left: 2.25em;
-                padding-top: 2.25em;
-                display: flex;
-                flex-direction: column;
-                background-color: #f8f8f8;
-                
-                h1 {
-                    margin-bottom: .85em;
-                }
-                
-                p {
-                    margin: 0 0 1.25em 0;
-                    width: 92%;
-                }
-                
-                .media__icons {
+    .about_us__container .container__content,
+    .location__container .container__content {
+        width: 50%;
+        height: 100%;
+        padding: 0 3em 1.15em 3em;
+        display: flex;
+        flex-direction: column;
+        background-color: #5c4625;
+        color: $white;
+        justify-content: space-evenly;
+        
+        .content__parapgraph {
+            margin: 0 0 1.25em 0;
+            width: 92%;
+        }  // Content Paragraph
+
+        .content__link {
+            color: $white;
+            width: 41%;
+            background-color: #fff;
+            padding: .5em 1em;
+            border-radius: 1.5em;
+            color: #5c4625;
+            transition: background-color .4s ease;
+            
+            &:hover {
+                background-color: #d2a257;
+                color: white;
+            }  // Button Hover
+        }
+    }  // About Us & Location Container -> Container Content
+
+    .location__container {
+        .container { 
+            &__content {
+
+                .content__media_icons {
                     display: flex;
                     width: 18%;
                     justify-content: space-between;
-                    margin-top: 1em;
                     
-                    a {
+                    .item__link {
                         font-size: 1.2em;
-                        color: #B68840;
+                        color: #e1af60;
                         transition: color 0.4s ease;
                     
                         &:hover {
-                            color: #9A6D27;
-                        }
-                    }
-                }
-            }
+                            color: $white;
+                        }  // Link Hover
+                    }  // Item Link
+                }  // Media icons
+            }  // Content
 
-            .location__content {
-                padding-top: 3em;
-            }
-            
-            .about__us-content {
-                a {
-                    background-color: #B68840;
-                    padding: 0.8em 1.5em;
-                    border-radius: 1.5em;
-                    color: #ffffff;
-                    transition: background-color 0.4s ease;
-                    width: 24%;
-                    font-size: 12px;
+            &__contact {
+                .contact__button {
+                    position: absolute;
+                    right: 3.5em;
+                    bottom: 3em;
                     
-                    &:hover {
-                        background-color: #9A6D27;
-                    }
-                }
-            }
-            
-            .contact__button {
-                position: absolute;
-                right: 3.5em;
-                bottom: 4.5em;
-                
-                a {
-                    background-color: #B68840;
-                    padding: 0.8em 1.5em;
-                    border-radius: 1.5em;
-                    color: #ffffff;
-                    transition: background-color 0.4s ease;
-                    
-                    &:hover {
-                        background-color: #9A6D27;
-                    }
-                }
-            }
-        }
-    }
-    
-}
+                    .button__link {
+                        background-color: #fff;
+                        padding: .5em 1em;
+                        border-radius: 1.5em;
+                        color: #5c4625;
+                        transition: background-color .4s ease;
+                        
+                        &:hover {
+                            background-color: #d2a257;
+                            color: white;
+                        }  // Button Hover
+
+                    }  // Button Link
+                }  // Contact Button
+            }  // Contact
+        }  // Location Container -> Container
+    }  // Location Container
+}  // Container 

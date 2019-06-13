@@ -59,7 +59,7 @@ function images() {
 
 function compileJade() {
     return gulp
-        .src('./src/templates/*.jade')
+        .src(['./src/templates/index.jade', './src/templates/products.jade', './src/templates/order.jade'])
         .pipe(jade({
             pretty: true
         }))

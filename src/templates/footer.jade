@@ -8,32 +8,27 @@ footer
         a(href="#") Algemene Voorwaarden
 
     .footer__social_media
-        a(href="#") 
+        a(href="https://instagram.com").social_media__link
             <i class="fab fa-instagram"></i> Instagram
-        a(href="#") 
+        a(href="https://twitter.com").social_media__link 
             <i class="fab fa-twitter"></i> Twitter
-        a(href="#") 
+        a(href="https://facebook.com").social_media__link 
             <i class="fab fa-facebook"></i> Facebook
 
     .footer__newsletter
         p Abonneer op onze nieuwsbrief
         .footer__newsletter_subscribe
-            input(type="text" placeholder="E-mail adres")
+            input(type="text" placeholder="E-mail adres" aria-label="email-newsletter")
             button#subscribeBtn OK
-
-            //5140220000684211 | 280 | tamara clark | 1220 | 96367 | psc 80box 11715 | apo | US | AP | 4062252459 | tclark.nirai@gmail.com DBmay/2017 | 4062252459 | -
-
-            //4833160145833981 | 498 | Neil B Mack | 1119 | 92009 | 3141 Calle Viento | Carlsbad | US | CA | 7608452188 | DBmay/2017 | 7608452188 | -
     
     .footer__contact
-        p 
-            a(href="https://www.google.com/maps/place/Harste+4-6,+8602+JX+Sneek/@53.0373011,5.6425321,17z/data=!3m1!4b1!4m5!3m4!1s0x47c8ee2a0b02634f:0xbe341ab6053e70ec!8m2!3d53.0373011!4d5.6447208" target="_blank") Harste 4-6, 8602JX Sneek, Friesland
-        p 0515 12 34 56
-        p 
+        p.contact__address 
+            a(href="https://www.google.com/maps/place/Harste+4-6,+8602+JX+Sneek/@53.0373011,5.6425321,17z/data=!3m1!4b1!4m5!3m4!1s0x47c8ee2a0b02634f:0xbe341ab6053e70ec!8m2!3d53.0373011!4d5.6447208" target="_blank" rel="noreferrer") Harste 4-6, 8602JX Sneek, Friesland
+        p.contact__phone 0515 12 34 56
+        p.contact__mail 
            a(href="mailto:info@bakey.nl") info@bakey.nl
 
     .footer__copyright
-        p Bakey © 2019
+        p.copyright__text Bakey © 2019
 
-script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js')
 script(src='dist/js/main.js')

@@ -1,39 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
   <head>
     <title>Bakey</title>
     <link rel="stylesheet" href="dist/css/main.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="dist/css/all.css">
+    <meta name="description" content="De beste bakker van heel Nederland!">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
   </head>
   <body>
-    <div id="loader" class="loader">
-      <div class="loader__container">
-        <div class="icon__hat">
-          <div class="icon__hat-circle"></div>
-          <div class="icon__hat-circle"></div>
-          <div class="icon__hat-circle"></div>
-          <div class="icon__hat-line"></div>
-          <div class="brand__name">
-            <h1>B</h1>
-            <h1>A</h1>
-            <h1>K</h1>
-            <h1>E</h1>
-            <h1>Y</h1>
-          </div>
-        </div>
-      </div>
-    </div>
     <nav>
-      <div class="nav-links">
-        <li>
+      <ul class="nav-links">
+        <li class="nav__links--item">
           <div class="logo"> <a href="/">LOGO</a></div>
         </li>
-        <li><a href="/products.html">Assortiment</a></li>
-        <li><a href="/order.html">Bestellen</a></li>
-        <li><a href="#">Over ons</a></li>
-        <li><a href="#">Locatie</a></li>
-        <li><a href="#">Contact</a></li>
-      </div>
+        <li class="nav__links--item"><a href="/products.html">Assortiment</a></li>
+        <li class="nav__links--item"><a href="/order.html">Bestellen</a></li>
+        <li class="nav__links--item"><a href="#">Over ons</a></li>
+        <li class="nav__links--item"><a href="#">Locatie</a></li>
+        <li class="nav__links--item"><a href="#">Contact</a></li>
+      </ul>
     </nav>
     <div class="order">
       <div class="order__form__container">
@@ -57,32 +44,26 @@
     <footer>
       <div class="footer__logo"><a href="#">LOGO</a></div>
       <div class="footer__links"><a href="#">Over ons</a><a href="#">Contact</a><a href="#">Algemene Voorwaarden</a></div>
-      <div class="footer__social_media"><a href="#">
+      <div class="footer__social_media"><a href="https://instagram.com" class="social_media__link"><i class="fab fa-instagram"></i> Instagram</a><a href="https://twitter.com" class="social_media__link">
            
-          <i class="fab fa-instagram"></i> Instagram</a><a href="#">
-           
-          <i class="fab fa-twitter"></i> Twitter</a><a href="#">
+          <i class="fab fa-twitter"></i> Twitter</a><a href="https://facebook.com" class="social_media__link">
            
           <i class="fab fa-facebook"></i> Facebook</a></div>
       <div class="footer__newsletter">
         <p>Abonneer op onze nieuwsbrief</p>
         <div class="footer__newsletter_subscribe">
-          <input type="text" placeholder="E-mail adres">
+          <input type="text" placeholder="E-mail adres" aria-label="email-newsletter">
           <button id="subscribeBtn">OK</button>
-          <!--5140220000684211 | 280 | tamara clark | 1220 | 96367 | psc 80box 11715 | apo | US | AP | 4062252459 | tclark.nirai@gmail.com DBmay/2017 | 4062252459 | --->
-          <!--4833160145833981 | 498 | Neil B Mack | 1119 | 92009 | 3141 Calle Viento | Carlsbad | US | CA | 7608452188 | DBmay/2017 | 7608452188 | --->
         </div>
       </div>
       <div class="footer__contact">
-        <p> <a href="https://www.google.com/maps/place/Harste+4-6,+8602+JX+Sneek/@53.0373011,5.6425321,17z/data=!3m1!4b1!4m5!3m4!1s0x47c8ee2a0b02634f:0xbe341ab6053e70ec!8m2!3d53.0373011!4d5.6447208" target="_blank">Harste 4-6, 8602JX Sneek, Friesland</a></p>
-        <p>0515 12 34 56</p>
-        <p> <a href="mailto:info@bakey.nl">info@bakey.nl</a></p>
+        <p class="contact__address"> <a href="https://www.google.com/maps/place/Harste+4-6,+8602+JX+Sneek/@53.0373011,5.6425321,17z/data=!3m1!4b1!4m5!3m4!1s0x47c8ee2a0b02634f:0xbe341ab6053e70ec!8m2!3d53.0373011!4d5.6447208" target="_blank" rel="noreferrer">Harste 4-6, 8602JX Sneek, Friesland</a></p>
+        <p class="contact__phone">0515 12 34 56</p>
+        <p class="contact__mail"> <a href="mailto:info@bakey.nl">info@bakey.nl</a></p>
       </div>
       <div class="footer__copyright">
-        <p>Bakey © 2019</p>
+        <p class="copyright__text">Bakey © 2019</p>
       </div>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="dist/js/main.js"></script>
   </body>
 </html>

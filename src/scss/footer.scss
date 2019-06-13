@@ -36,7 +36,7 @@ footer {
         display: flex;
         flex-direction: column;
 
-        a {
+        .social_media__link {
             margin-bottom: .5em;
             transition: color .4s ease;
 
@@ -75,9 +75,13 @@ footer {
                 padding: .8em 4em .8em 1em;
                 border-radius: .5em;
                 border: none;
-                background-color: transparent;
-                border: 2px solid #CA9A4E;
-                color: #ffffff;
+                background-color: #5c4625;
+                color: #fff;
+                border: 2px solid #fff;
+
+                &::placeholder {
+                    color: #ffffff;
+                }
             }
 
             button {
@@ -86,8 +90,8 @@ footer {
                 border: none;
                 border-top-right-radius: .6em;
                 border-bottom-right-radius: .6em;
-                background-color: #CA9A4E;
-                color: #ffffff;
+                background-color: #fff;
+                color: #5c4625;
                 cursor: pointer;
             }
         }
